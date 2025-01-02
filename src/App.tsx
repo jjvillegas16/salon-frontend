@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import { RetellWebClient } from "retell-client-js-sdk";
+import { client } from "./utils/axios";
 
 interface RegisterCallResponse {
-  access_token: string;
+  message: string;
+  statusCode: number;
+  success: boolean;
+  responseObject: Record<string, any>;
 }
 
 const retellWebClient = new RetellWebClient();
@@ -63,10 +67,11 @@ const App = () => {
       retellWebClient.stopCall();
     } else {
       const registerCallResponse = await registerCall();
-      if (registerCallResponse.access_token) {
+      const { accessToken } = registerCallResponse.responseObject;
+      if (registerCallResponse.responseObject.accessToken) {
         retellWebClient
           .startCall({
-            accessToken: registerCallResponse.access_token,
+            accessToken,
           })
           .catch(console.error);
         setIsCalling(true); // Update button to "Stop" when conversation starts
@@ -77,7 +82,7 @@ const App = () => {
   async function registerCall(): Promise<RegisterCallResponse> {
     try {
       // Update the URL to match the new backend endpoint you created
-      const response = await fetch("http://localhost:3000/web-calls", {
+      const response = await client.post("/web-calls", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -85,11 +90,7 @@ const App = () => {
         body: JSON.stringify({}),
       });
 
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-      }
-
-      const data: RegisterCallResponse = await response.json();
+      const data: RegisterCallResponse = await response.data;
       return data;
     } catch (err) {
       console.log(err);
