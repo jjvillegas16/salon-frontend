@@ -12,6 +12,8 @@ interface RegisterCallResponse {
 
 const retellWebClient = new RetellWebClient();
 
+// sourced from https://github.com/RetellAI/retell-frontend-reactjs-demo/blob/main/frontend_demo/src/App.tsx
+
 const App = () => {
   const [isCalling, setIsCalling] = useState(false);
 
