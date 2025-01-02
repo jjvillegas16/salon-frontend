@@ -1,50 +1,32 @@
-# React + TypeScript + Vite
+## 🌟 Introduction
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend repo for the phone web agent. This uses Retell AI services for the AI voice agent platform. The backend repo is [here](https://github.com/jjvillegas16/salon-backend)
 
-Currently, two official plugins are available:
+## Prerequisite
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Ensure you have the following in your local environment:
 
-## Expanding the ESLint configuration
+1. NodeJS v22.12.0
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Local dev setup
 
-- Configure the top-level `parserOptions` property like this:
+1. Clone the repo
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+git clone <repository-url>
+cd <repository-directory>
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Add .env vars. You can use .env.template as reference for the needed variables
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+3. Install the dependencies.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm install
+```
+
+4. Run the project
+
+```bash
+npm run dev
 ```
