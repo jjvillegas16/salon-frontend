@@ -30,3 +30,7 @@ npm install
 ```bash
 npm run dev
 ```
+
+Limitations:
+
+1. Please use google chrome for easier use. there's an webrtc error in firefox that needs additional config to be fixed when running locally (https://stackoverflow.com/questions/72862092/webrtc-ice-failed-in-firefox-but-working-in-ms-edge)
